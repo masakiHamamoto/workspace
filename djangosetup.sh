@@ -28,4 +28,4 @@ fi
 virtualenv_dep_install
 echo "Now performing Django tasks"
 python manage.py makemigrations
-python manage.py migrate
+#python manage.py migrate
