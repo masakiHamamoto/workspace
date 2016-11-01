@@ -1,5 +1,10 @@
 language: bash
 script: perl ./app/test.pl
 notifications:
-  email: yrl_mobile_s8@softbank.ne.jp
-
+#  email: yrl_mobile_s8@softbank.ne.jp
+  slack: 
+    rooms:
+      - hamatestteam:J4Y4TRecbOMvAYtLlgEoI6Va
+      - hamatestteam:J4Y4TRecbOMvAYtLlgEoI6Va#general
+      - hamatestteam:J4Y4TRecbOMvAYtLlgEoI6Va#random
+    on_success: always
