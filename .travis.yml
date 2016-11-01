@@ -4,6 +4,7 @@ language: bash
 #install: pip install -r requirements.txt
 
 #script: perl ./app/test.pl  
-script: python --version 
+script: 
+  - python --version 
 #  - python --version 
 #  - ./djangosetup.sh
