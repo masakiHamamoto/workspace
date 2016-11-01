@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}team{% endblock title %}
+
+{% block more_links %}
+	<link rel="stylesheet" href="{% static 'css/group.css' %}">
+{% endblock more_links %}
+
+{% block main_content %}
+	<div class="span9">
+		<p id="title">
+			Meet the Squad
+		</p>
+	</div>
+	<div class="row">
+	<div id="box" class="span9">
+		<div id="person" class="span3">
+			<img class="round_image" src="{% static 'image/emily.jpg' %}"/>
+			<p id="name">emily</p>
+		</div>
+		<div id="person" class="span3">
+			<img class="round_image" src="{% static 'image/rema.jpg' %}"/>
+			<p id="name">reemma</p>
+		</div>
+		<div id="person" class="span3">
+			<img class="round_image" src="{% static 'image/sadir.jpg' %}"/>
+			<p id="name">sadir</p>
+		</div>
+	</div>
+	<div id="box" class="span9">
+		<div id="person" class="span3">
+			<img class="round_image" src="{% static 'image/anirudh.jpg' %}"/>
+			<p id="name">anirudh</p>
+		</div>
+		<div id="person" class="span3">
+			<img class="round_image" src="{% static 'image/faiz.jpg' %}"/>
+			<p id="name">faiz</p>
+		</div>
+		<div id="person" class="span3">
+			<img class="round_image" src="{% static 'image/chris.jpg' %}"/>
+			<p id="name">chris</p>
+		</div>
+	</div>
+	</div>
+{% endblock main_content %}
+
+{% block more_scripts %}
+{% endblock more_scripts %}

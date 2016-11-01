@@ -1,0 +1,47 @@
+.round_image {
+	border-radius: 50%; 
+	max-height: 200px;
+	max-width: 200px;
+	display: inline-block !important;
+	vertical-align: center;
+	position:center; 
+  display: inline-block;
+}
+
+body {
+  background: #9BC4CB; /* fallback for old browsers */
+  font-family: 'Hind';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+}
+
+.span9 {
+  vertical-align: center;
+}
+
+#title {
+  font-family: 'Hind';
+  font-size: 150px;
+  text-align: center;
+  padding-top: 60px;
+}
+
+#name {
+  font-family: 'Hind';
+  font-size: 30px;
+  text-align: center;
+}
+
+#box {
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    height:100%;
+}
+
+#person {
+  display: inline-block;
+  padding: 20px;
+}
