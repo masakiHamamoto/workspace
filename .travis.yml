@@ -7,5 +7,6 @@ language: bash
 script: 
   - pip --help
   - curl --help
+  - abc --help
   - python --version 
   - bash djangosetup.sh
