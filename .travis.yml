@@ -1,6 +1,6 @@
-#language: bash
-#script: perl ./app/test.pl
 language: python
+#script: perl ./app/test.pl
+#language: python
 #python: 
 #  - "3.2"
 #install: "python get-pip.py"   
