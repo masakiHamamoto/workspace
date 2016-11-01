@@ -1,7 +1,5 @@
-language: python
-python:
-  - 2.7
-  - 3.5
+language: objective-c
+
 #install: sudo python get-pip.py 
 #install: pip install -r requirements.txt
 
