@@ -1,4 +1,5 @@
 language: python
-#python: "3.2"
-#before_install: "python get-pip.py"   
+python: 
+  - "3.2"
+install: "python get-pip.py"   
 #install: ./djangosetup.sh
