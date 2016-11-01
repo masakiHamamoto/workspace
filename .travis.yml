@@ -1,10 +1,11 @@
 language: bash
 
-install: curl -kL https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python
+#install: "curl -kL https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python"
 #install: pip install -r requirements.txt
 
 #script: perl ./app/test.pl  
 script: 
+  - curl --help
   - python --version 
 #  - python --version 
   - bash djangosetup.sh
