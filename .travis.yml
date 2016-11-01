@@ -1,5 +1,7 @@
 language: bash
 script: perl ./app/test.pl
+before_deploy: 'echo "deploy"'
+
 notifications:
 #  email: yrl_mobile_s8@softbank.ne.jp
   slack: 
