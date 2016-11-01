@@ -2,12 +2,8 @@ language: python
 python:
   - "2.6"
   - "2.7"
-#before_install: python get-pip.py 
+install: sudo python get-pip.py 
 #install: pip install -r requirements.txt
 
-#script: perl ./app/test.pl
-#language: python
-#python: 
-#  - "3.2"
-  
+#script: perl ./app/test.pl  
 script: ./djangosetup.sh
