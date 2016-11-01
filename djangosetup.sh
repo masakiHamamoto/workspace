@@ -21,11 +21,11 @@ function virtualenv_install {
     sudo pip install virtualenv
 }
 
-if [ ! -z `which virtualenv` ]; then
-    virtualenv_install
-fi
+#if [ ! -z `which virtualenv` ]; then
+#    virtualenv_install
+#fi
 
-virtualenv_dep_install
+#virtualenv_dep_install
 echo "Now performing Django tasks"
 #python manage.py makemigrations
 #python manage.py migrate
