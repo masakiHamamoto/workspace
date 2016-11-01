@@ -1,7 +1,7 @@
 language: bash
 
 #install: "curl -kL https://bootstrap.pypa.io/get-pip.py | python"
-install: pip install -r ref_manager/requirements.txt
+#install: pip install -r ref_manager/requirements.txt
 
 #script: perl ./app/test.pl  
 script: 
