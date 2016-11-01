@@ -1,5 +1,5 @@
 language: bash
-script: perl ./app/test.pl
+#script: perl ./app/test.pl
 #language: python
 #python: 
 #  - "3.2"
