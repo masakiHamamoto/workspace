@@ -5,5 +5,5 @@ language: bash
 
 #script: perl ./app/test.pl  
 script:
-  - python --version 
+#  - python --version 
   - ./djangosetup.sh
