@@ -1,3 +1,9 @@
-language: bash
-script: perl ./app/test.pl
-
+language: python
+python:
+   - "2.6"
+   - "2.7"
+   - "3.2"
+   - "3.3"
+   - "3.4"
+before_install: "python get-pip.py"   
+install: ./djangosetup.sh
