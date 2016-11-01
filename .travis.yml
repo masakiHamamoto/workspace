@@ -1,4 +1,4 @@
-language: python
+language: python3
 #script: perl ./app/test.pl
 #language: python
 #python: 
