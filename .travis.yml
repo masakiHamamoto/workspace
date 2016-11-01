@@ -8,5 +8,4 @@ script:
   - pip --help
   - curl --help
   - python --version 
-#  - python --version 
   - bash djangosetup.sh
