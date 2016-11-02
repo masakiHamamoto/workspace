@@ -6,4 +6,4 @@ class Reference(models.Model):
     title = models.CharField(max_length=100)
     link = models.CharField(max_length=1000)
     notes = models.TextField(max_length=1000)
-    user = models.ForeignKey(User, related_name='reference', default='ref')
+    user = models.ForeignKey(User, related_name='reference', default='d_refefence')
