@@ -22,11 +22,11 @@ function virtualenv_install {
 }
 
 #if [ ! -z `which virtualenv` ]; then
-    virtualenv_install
+virtualenv_install
 #fi
 
 virtualenv_dep_install
 echo "Now performing Django tasks"
 python -V
-python manage.py makemigrations
+#python manage.py makemigrations
 #python manage.py migrate
