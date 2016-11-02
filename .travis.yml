@@ -5,7 +5,7 @@ language: bash
 
 #script: perl ./app/test.pl  
 script: 
-  - pip install -r requirements.txt
+#  - pip install -r requirements.txt
   - pip --help
   - curl --help
   - python --version 
