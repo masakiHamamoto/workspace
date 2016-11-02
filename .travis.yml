@@ -2,7 +2,7 @@
 language: python
 rvm:
   - 3.5.2
-  - 2.7.2
+#  - 2.7.2
 
 #install: "curl -kL https://bootstrap.pypa.io/get-pip.py | python"
 #install: pip install -r requirements.txt

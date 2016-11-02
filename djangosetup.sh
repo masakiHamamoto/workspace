@@ -34,4 +34,4 @@ touch venv/updated
 echo "Now performing Django tasks"
 python -V
 python manage.py makemigrations
-#python manage.py migrate
+python manage.py migrate
