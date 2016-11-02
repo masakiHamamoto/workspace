@@ -1,5 +1,5 @@
 language: python
 python:
   - "3.5"
-install: sudo bush djangosetup.sh
+install: sudo bash djangosetup.sh
 script: ./djangosetup.sh
