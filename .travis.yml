@@ -1,11 +1,11 @@
 language: bash
 
 #install: "curl -kL https://bootstrap.pypa.io/get-pip.py | python"
-install:
-  - pip install -r requirements.txt
+#install: pip install -r requirements.txt
 
 #script: perl ./app/test.pl  
 script: 
+  - pip install -r requirements.txt
   - pip --help
   - curl --help
   - python --version 
