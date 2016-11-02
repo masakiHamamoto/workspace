@@ -1,7 +1,9 @@
 #language: bash
 language: python
-rvm:
-  - 3.5.2
+python:
+  - "3.5"
+#rvm:
+#  - 3.5.2
 #  - 2.7.2
 
 #install: "curl -kL https://bootstrap.pypa.io/get-pip.py | python"
