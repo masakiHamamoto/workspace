@@ -1,11 +1,11 @@
 language: python
 python:
-   - "2.7"
-   - "3.3"
-   - "3.4"
+#   - "2.7"
+#   - "3.3"
+#   - "3.4"
    - "3.5"
-   - "3.5-dev"
-   - "3.6-dev"
+#   - "3.5-dev"
+#   - "3.6-dev"
 install:
   - chmod +x djangosetup.sh
   - ./djangosetup.sh
