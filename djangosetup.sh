@@ -27,7 +27,7 @@ virtualenv_install
 cd ref_manager
 virtualenv venv 
 source venv/bin/activate
-pip install -r requirements.txt
+#pip install -r requirements.txt
 touch venv/updated
 
 #virtualenv_dep_install
