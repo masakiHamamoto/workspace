@@ -4,29 +4,37 @@
   margin-left: 50px;
   margin-right: 50px;
   position: relative;
-  
+
   .glyphicon {
     font-size: 20px;
   }
 }
 
+.contentTableCell {
+  border: solid 1px #ffffff;
+}
+
 .table-remove {
-  color: #700;
+  color: #2a2a2a;
   cursor: pointer;
-  
+
   &:hover {
-    color: #f00;
+    color: #000000;
   }
 }
 
 .table-add {
-  color: #070;
+  color: #2a2a2a;
   cursor: pointer;
   position: absolute;
   top: 8px;
   right: 0;
-  
+
   &:hover {
-    color: #0b0;
+    color: #000000;
   }
+}
+
+body {
+  background-color: #d3d3d3;
 }

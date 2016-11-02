@@ -1,33 +1,86 @@
 $(document).ready(function() {
-    var $TABLE = $('#table');
+  //stolen from http://stackoverflow.com/questions/6506897/csrf-token-missing-or-incorrect-while-post-parameter-via-ajax-in-django
+  function getCookie(c_name)
+  {
+      if (document.cookie.length > 0)
+      {
+          c_start = document.cookie.indexOf(c_name + "=");
+          if (c_start != -1)
+          {
+              c_start = c_start + c_name.length + 1;
+              c_end = document.cookie.indexOf(";", c_start);
+              if (c_end == -1) c_end = document.cookie.length;
+              return unescape(document.cookie.substring(c_start,c_end));
+          }
+      }
+      return "";
+   }
 
-    $('.table-add').click(function () {
-	var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
-	$TABLE.find('table').append($clone);
-    });
-
-    $('.table-remove').click(function () {
-	$(this).parents('tr').detach();
-    });
-
-/*  // Turn all existing rows into a loopable array
-  $rows.each(function () {
-    var $td = $(this).find('td');
-    var h = {};
-    
-    // Use the headers from earlier to name our hash keys
-    headers.forEach(function (header, i) {
-      h[header] = $td.eq(i).text();   
-    });
-    
-    data.push(h);
+  $.ajaxSetup({
+      headers: { "X-CSRFToken": getCookie("csrftoken") }
   });
-    */
-    
-  var references = [];
+    var $TABLE = $('#table');
+    var $TEMPLATE_ROW = $TABLE.find('tr.hide');
+    var references = [{
+      "title": "first title",
+      "link": "first.link",
+      "notes": "This is the first reference",
+      "refid": "alk;1mkl;m"
+    }, {
+      "title": "second title",
+      "link": "second.link",
+      "notes": "This is the second reference",
+      "refid": "kl1m;lm2"
+
+    }];
+
+      $('.table-add').click(addReferenceToServer);
+      $('.table-remove').click(function () {
+        var refid = getRefIdFromRowElement($(this));
+        deleteReferenceOnServer(refid);
+        $(this).parents('tr').detach();
+      });
+
+    /*  // Turn all existing rows into a loopable array
+      $rows.each(function () {
+        var $td = $(this).find('td');
+        var h = {};
+
+        // Use the headers from earlier to name our hash keys
+        headers.forEach(function (header, i) {
+          h[header] = $td.eq(i).text();
+        });
+
+        data.push(h);
+      });
+        */
+
+  function getRefIdFromRowElement(td) {
+    return td.parents('tr').attr("refid");
+  }
+
+  function addBlurEventHandler(tableCell) {
+    var refid = getRefIdFromRowElement(tableCell);
+  }
+
+  function updateReferenceEverywhere(trOfReference) {
+    currRef = {};
+    currRef["refid"] = trOfReference.attr("refid");
+    currRef["title"] = trOfReference.find("td:nth-child(1)").text();
+    currRef["link"] = trOfReference.find("td:nth-child(2)").text();
+    currRef["notes"] = trOfReference.find("td:nth-child(3)").text();
+    var ind = getReferencePositionFromId(currRef["refid"]);
+    if(ind != -1) {
+      var oldRef = references[ind];
+      oldRef["title"] = currRef["title"];
+      oldRef["link"] = currRef["link"];
+      oldRef["notes"] = currRef["notes"];
+    }
+    updateReferenceOnServer(currRef);
+  }
 
   function getReferences(success, error) {
-    $.get( "/references/", function(rawData) {
+    $.get( "/references", function(rawData) {
       if(rawData.error && rawData.error != null) {
         error(rawData.error);
       } else {
@@ -40,20 +93,31 @@ $(document).ready(function() {
   function overwriteReferences(referenceData) {
     references = referenceData;
     clearAllReferences();
-    for(int i = 0; i < referenceData.length; i++) {
+    for(var i = 0; i < referenceData.length; i++) {
       var reference = referenceData[i];
       addReferenceToUI(reference);
     }
   }
 
   function clearAllReferences(){
-    console.log("References cleared!");
-    //we don't have the DOM done yet, so just simulate htis TODO
+    $TABLE.slice(1).remove();
+  }
+
+  function getEditableTableRow() {
+    return $("<td contenteditable='true'></td>");
   }
 
   function addReferenceToUI(reference) {
-    console.log(JSON.stringify(reference));
-    //we don't have the DOM done yet, so just print elements TODO
+    var $clone = $TEMPLATE_ROW.clone(true).removeClass('hide table-line');
+    $clone.attr("refid", reference.refid);
+    var title = $clone.find("td:nth-child(1)");
+    title.text(reference.title);
+    var link = $clone.find("td:nth-child(2)");
+    link.text(reference.link);
+    var notes = $clone.find("td:nth-child(3)");
+    notes.text(reference.notes);
+    $TABLE.find('table').append($clone);
+    addblureventhandlertorow($clone);
   }
 
   function updateReferences() {
@@ -61,7 +125,7 @@ $(document).ready(function() {
   }
 
 
-  function deleteReference(redid) {
+  function deleteReference(refid) {
     var ind = getReferencePositionFromId(refid);
     if(ind != -1) {
       references.splice(ind, 1);
@@ -71,7 +135,8 @@ $(document).ready(function() {
   function getReferencePositionFromId(refid) {
     var ind = -1;
     var arr = $.grep(references, function(elem, index) {
-      if(refid.equals(elem.refid)) {
+      console.log(JSON.stringify(elem));
+      if(refid === elem.refid) {
         ind = index;
         return true;
       } else {
@@ -81,27 +146,24 @@ $(document).ready(function() {
     return ind;
   }
 
-  //TODO integrate this function into DOM
   //DELETE
-  function deleteReferenceOnServer() {
-      var refid = "1234"; //TODO really get the reference from the DOM
+  function deleteReferenceOnServer(refid) {
       var sendObj = {};
-      sendObj["refids"] = [refid];
+      sendObj["refids"] = [];
+      sendObj["refids"].push(refid);
       $.ajax({
           type: "DELETE",
-          url: "/references/",
+          url: "/references",
           data: JSON.stringify(sendObj),
           success: function(data) {
             deleteReference(refid);
-            overwriteReferences(references);
           }
       });
   }
 
   //GET
   function getReferences(success, error) {
-    $.getJSON( "/references/", function(rawData) {
-      rawData = JSON.parse(rawData);
+    $.getJSON( "/references", function(rawData) {
       if(rawData.error && rawData.error != null) {
         error(rawData.error);
       } else {
@@ -114,40 +176,52 @@ $(document).ready(function() {
   //PUT
   function addReferenceToServer() {
     var reference = {};
-    reference["title"] = "testtitle";
-    reference["link"] = "http://google.com";
-    reference["notes"] = "Some reference thing";
+    reference["title"] = "";
+    reference["link"] = "";
+    reference["notes"] = "";
     $.ajax({
       type: "PUT",
-      url: "/referenes/",
+      url: "/references",
       data: JSON.stringify(reference),
-      success: function(newRefIdStr) {
-        newRefId = JSON.parse(newRefIdStr)["refid"];
+      success: function(newRefIdObj) {
+        newRefId = newRefIdObj["refid"];
         reference["refid"] = newRefId;
         references.push(reference);
-        overwriteReferences(references);
+        addReferenceToUI(reference);
       }
     });
   }
 
   //POST
-  function updateReferenceOnServer() {
-    var reference = {};
-    reference["title"] = "testtitle";
-    reference["link"] = "http://google.com";
-    reference["notes"] = "Some reference thing";
-    reference["refid"] = "alsfmaselm13";
+  function updateReferenceOnServer(reference) {
     $.ajax({
       type: "POST",
-      url: "/referenes/",
+      url: "/references",
       data: JSON.stringify(reference),
       success: function() {
-        deleteReference(refid);
-        references.push(reference);
-        overwriteReferences(references);
+        //nothing needs to happen here.
       }
     });
   }
+
+  function addblureventhandler(td) {
+    var timer = null;
+    td.keyup(function () {
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+          updateReferenceEverywhere(td.parents('tr'));
+        }, 600);
+    });
+  }
+
+  function addblureventhandlertorow(row) {
+    var title = row.find("td:nth-child(1)");
+    var link = row.find("td:nth-child(2)");
+    var notes = row.find("td:nth-child(3)");
+    addblureventhandler(title);
+    addblureventhandler(link);
+    addblureventhandler(notes);
+  };
 
   updateReferences();
 });

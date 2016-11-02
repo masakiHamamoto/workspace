@@ -9,7 +9,7 @@
  <link rel="stylesheet" href="{% static 'css/references.css' %}">
 {% endblock more_links %}
 
-{% block main_content %} 
+{% block main_content %}
   <div id="table" class="table-editable">
     <span class="table-add glyphicon glyphicon-plus"></span>
     <table class="table">
@@ -20,19 +20,11 @@
         <th></th>
         <th></th>
       </tr>
-      <tr>
-        <td contenteditable="true">Stir Fry</td>
-        <td contenteditable="true">stir-fry</td>
-        <td contenteditable="true">stir-fry</td>
-        <td>
-          <span class="table-remove glyphicon glyphicon-remove"></span>
-        </td>
-      </tr>
       <!-- This is our clonable table line -->
       <tr class="hide">
-        <td contenteditable="true">Untitled</td>
-        <td contenteditable="true">undefined</td>
-        <td contenteditable="true">undefined</td>
+        <td contenteditable="true" class="contentTableCell">Untitled</td>
+        <td contenteditable="true" class="contentTableCell">undefined</td>
+        <td contenteditable="true" class="contentTableCell">undefined</td>
         <td>
           <span class="table-remove glyphicon glyphicon-remove"></span>
         </td>
@@ -43,7 +35,7 @@
 {% endblock main_content %}
 
 {% block more_scripts %}
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script> 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
     <script src="http://listjs.com/assets/javascripts/list.min.js"></script>
     <script src="{% static 'js/references.js' %}" type="text/javascript"></script>
 {% endblock more_scripts %}
