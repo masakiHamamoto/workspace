@@ -1,18 +1,9 @@
-#language: bash
 language: python
 python:
   - "3.5"
-#rvm:
-#  - 3.5.2
-#  - 2.7.2
-
-#install: "curl -kL https://bootstrap.pypa.io/get-pip.py | python"
-#install: pip install -r requirements.txt
-
-#script: perl ./app/test.pl  
+  - "2.7"
 script: 
-#  - pip install -r requirements.txt
-  - pip --help
-  - curl --help
-  - python --version 
+#  - pip --help
+#  - curl --help
+#  - python --version 
   - bash djangosetup.sh
