@@ -21,9 +21,9 @@ function virtualenv_install {
     sudo pip install virtualenv
 }
 
-if [ ! -z `which virtualenv` ]; then
+#if [ ! -z `which virtualenv` ]; then
     virtualenv_install
-fi
+#fi
 
 virtualenv_dep_install
 echo "Now performing Django tasks"
